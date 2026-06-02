@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: career-compass
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - PORT=3000
+      - FRONTEND_ORIGIN=${FRONTEND_ORIGIN:-http://localhost:3000}
+      - MAX_SUGGESTIONS=${MAX_SUGGESTIONS:-5}
+      - NODE_ENV=production
+    restart: unless-stopped
